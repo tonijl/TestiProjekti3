@@ -54,6 +54,12 @@ public class playerScript : MonoBehaviour
 		
 		currentHealth -= damage;
 		Debug.Log("Player health: "+ currentHealth);
+
+		if(currentHealth>maxHealth)
+		{
+			currentHealth = maxHealth;
+		}
+
 		
 		if(healthBar != null)
 		{
@@ -67,7 +73,11 @@ public class playerScript : MonoBehaviour
 			return;
 		}
 		
-		StartCoroutine(InvincibilityFrames());
+
+		if(damage>0){
+			StartCoroutine(InvincibilityFrames());
+		}
+		
 	}
 	
 	private IEnumerator InvincibilityFrames()

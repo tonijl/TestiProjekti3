@@ -193,6 +193,7 @@ MonoBehaviour:
   healthBar: {fileID: 140057090486502185}
   healthBarObject: {fileID: 4147541502903686200}
   healthBarOffset: {x: 0, y: 0.8, z: 0}
+  healthPackPrefab: {fileID: 5214970074149388371, guid: 1d491875d528dd343b1663fc15cfedc5, type: 3}
 --- !u!114 &4371147348773991364
 MonoBehaviour:
   m_ObjectHideFlags: 0

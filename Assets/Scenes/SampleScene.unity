@@ -2515,6 +2515,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarObject: {fileID: 0}
   healthBarOffset: {x: 0, y: 0.8, z: 0}
+  healthPackPrefab: {fileID: 0}
 --- !u!1 &1684872473
 GameObject:
   m_ObjectHideFlags: 0

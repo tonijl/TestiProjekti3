@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
 	public Vector3 healthBarOffset = new Vector3(0, 0.8f, 0);
 	
 	private bool scoreGiven = false;
+
+	public GameObject healthPackPrefab;
 	
 	
 	
@@ -118,6 +120,21 @@ public class EnemyHealth : MonoBehaviour
 		if(scoreGiven == false){
 			ScoreManager.instance.AddScore(10); //1
 			scoreGiven = true;
+
+
+		// 20% changce to drop healthpack
+			if(Random.value <= 0.2f){
+
+					GameObject healthPack = Instantiate(
+						healthPackPrefab,
+						transform.position,
+						Quaternion.identity
+					);
+			}
+
+
+
+
 		}
 		//Destroy(gameObject);
 	}
