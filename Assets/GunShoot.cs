@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class GunShoot : MonoBehaviour
 {
 	
 	public GameObject bulletPrefab;
 	public Transform firePoint;
+	public TMP_Text weaponText;
+
+
 	public float bulletSpeed = 15f;
 	public float firerate = 10f;
 	public int weaponType = 2; // 1 = pistol, 2 = shotgun
@@ -37,6 +41,9 @@ public class GunShoot : MonoBehaviour
 				firerate = 10f;
 				bulletSpeed = 15f;
 				reloadTime = 100f;
+				if(weaponText != null){
+					weaponText.text = "Weapon: Pistol";
+				}
 			break;
 			case 2:
 				//shotgun
@@ -46,8 +53,16 @@ public class GunShoot : MonoBehaviour
 				firerate = 30f;
 				bulletSpeed = 15f;
 				reloadTime = 100f;
+				if(weaponText != null){
+					weaponText.text = "Weapon: Shotgun";
+				}
 			break;
 
+		}
+
+
+		if(weaponText != null){
+			weaponText.text = "Weapon: Pistol";
 		}
 
 
@@ -184,6 +199,9 @@ public class GunShoot : MonoBehaviour
 				firerate = 10f;
 				bulletSpeed = 15f;
 				reloadTime = 100f;
+				if(weaponText != null){
+					weaponText.text = "Weapon: Pistol";
+				}
 			break;
 			case 2:
 				//shotgun
@@ -193,8 +211,18 @@ public class GunShoot : MonoBehaviour
 				firerate = 30f;
 				bulletSpeed = 15f;
 				reloadTime = 100f;
+				if(weaponText != null){
+					weaponText.text = "Weapon: Shotgun";
+				}
 			break;
 
+		}
+
+
+		if(ammoBar != null)
+		{
+			ammoBar.maxValue = maxAmmo;
+			ammoBar.value = currentAmmo;
 		}
 
 		Reload();
