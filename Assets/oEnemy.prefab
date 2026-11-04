@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5608724479315912845}
   - component: {fileID: 4721352236936043754}
   - component: {fileID: 1998294145804478294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: oEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,3 +184,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5803a311998d548afb7f88411381ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  damage: 25

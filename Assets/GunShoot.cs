@@ -10,10 +10,12 @@ public class GunShoot : MonoBehaviour
 	public Transform firePoint;
 	public TMP_Text weaponText;
 
+	public GameObject rocketPrefab;
+
 
 	public float bulletSpeed = 15f;
 	public float firerate = 10f;
-	public int weaponType = 2; // 1 = pistol, 2 = shotgun
+	public int weaponType = 1; // 1 = pistol, 2 = shotgun, 3 = rocket launcher
 	
 	public int maxAmmo = 12;
 	public float reloadTime = 100f;
@@ -55,6 +57,18 @@ public class GunShoot : MonoBehaviour
 				reloadTime = 100f;
 				if(weaponText != null){
 					weaponText.text = "Weapon: Shotgun";
+				}
+			break;
+			case 3:
+				//rocket launcher
+				currentAmmo = 4;
+				maxAmmo = 4;
+				shootDelay = 30f;
+				firerate = 30f;
+				bulletSpeed = 15f;
+				reloadTime = 100f;
+				if(weaponText != null){
+					weaponText.text = "Weapon: Rocket Launcher";
 				}
 			break;
 
@@ -183,8 +197,8 @@ public class GunShoot : MonoBehaviour
 	private void ChangeWeapon()
 	{
 
-		if(weaponType == 1){
-			weaponType = 2;
+		if(weaponType < 3){
+			weaponType++;
 		}else{
 			weaponType = 1;
 		}
@@ -213,6 +227,18 @@ public class GunShoot : MonoBehaviour
 				reloadTime = 100f;
 				if(weaponText != null){
 					weaponText.text = "Weapon: Shotgun";
+				}
+			break;
+			case 3:
+				//rocket launcher
+				currentAmmo = 4;
+				maxAmmo = 4;
+				shootDelay = 30f;
+				firerate = 30f;
+				bulletSpeed = 15f;
+				reloadTime = 100f;
+				if(weaponText != null){
+					weaponText.text = "Weapon: Rocket Launcher";
 				}
 			break;
 
@@ -294,6 +320,23 @@ public class GunShoot : MonoBehaviour
 
 
 
+
+			break;
+			case 3:
+				//pistol
+
+				GameObject bullet3 = Instantiate(
+					rocketPrefab,
+					firePoint.position,
+					firePoint.rotation
+				);
+				
+				Vector2 direction3 = Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position;
+				
+				direction3.Normalize();
+				
+				Rigidbody2D rb3 = bullet3.GetComponent<Rigidbody2D>();
+				rb3.linearVelocity = direction3 * bulletSpeed;
 
 			break;
 

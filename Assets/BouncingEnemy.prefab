@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4616106988195097399}
   - component: {fileID: 7822188316331533274}
   - component: {fileID: 753078259133731404}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BouncingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +285,22 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2193468020090759813, guid: 89bec54d556e1fb4fa7fa4a309dcc2cc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470155077193895914, guid: 89bec54d556e1fb4fa7fa4a309dcc2cc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824747183618598075, guid: 89bec54d556e1fb4fa7fa4a309dcc2cc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055313499361869342, guid: 89bec54d556e1fb4fa7fa4a309dcc2cc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6525835252651000360, guid: 89bec54d556e1fb4fa7fa4a309dcc2cc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -372,6 +388,10 @@ PrefabInstance:
     - target: {fileID: 7989681527276494717, guid: 89bec54d556e1fb4fa7fa4a309dcc2cc, type: 3}
       propertyPath: m_Name
       value: EnemyHealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989681527276494717, guid: 89bec54d556e1fb4fa7fa4a309dcc2cc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
