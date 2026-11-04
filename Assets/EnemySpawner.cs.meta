@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 3f498858f0ab83044b2be4c7e4ed6e6e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ChasingEnemyPrefab: {fileID: 7737678677385950420, guid: a90b67b4791726d40a170c092a8c08f1, type: 3}
+  - BouncingEnemyPrefab: {fileID: 4072214975118867234, guid: 7b73e4da7e4c09f42b489d9e776050e9, type: 3}
+  - RangedEnemyPrefab: {fileID: 2860397915211018566, guid: 681c6ac1f8c5bfc47bc1c20e8281b6eb, type: 3}
+  - enemyPrefab: {instanceID: 0}
+  - player: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

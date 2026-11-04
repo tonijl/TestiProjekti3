@@ -9,9 +9,10 @@ public class EnemySpawner : MonoBehaviour
 	[Header("Enemy Types")]
 	public GameObject ChasingEnemyPrefab;
 	public GameObject BouncingEnemyPrefab;
+	public GameObject RangedEnemyPrefab;
 	
-	[Range(0f, 1f)]
-	public float bouncingEnemyChance = 0.3f;
+	//[Range(0f, 1f)]
+	//public float bouncingEnemyChance = 0.3f;
 	
 	
 	[Header("References")]
@@ -159,9 +160,32 @@ public class EnemySpawner : MonoBehaviour
 		}
 		
 		
-		GameObject selectPrefab = Random.value < bouncingEnemyChance
+
+		int randomEnemy = Random.Range(1, 4);
+
+		GameObject selectPrefab = null;
+
+
+		Debug.Log("randomEnemy: "+randomEnemy.ToString());
+
+		switch(randomEnemy)
+		{
+			case 1:
+				selectPrefab = ChasingEnemyPrefab;
+			break;
+			case 2:
+				selectPrefab = BouncingEnemyPrefab;
+			break;
+			case 3:
+				selectPrefab = RangedEnemyPrefab;
+			break;
+		}
+
+
+
+		/*GameObject selectPrefab = Random.value < bouncingEnemyChance
 			? BouncingEnemyPrefab
-			: ChasingEnemyPrefab;
+			: ChasingEnemyPrefab;*/
 			
 			GameObject enemy = Instantiate(
 				selectPrefab,
@@ -195,6 +219,13 @@ public class EnemySpawner : MonoBehaviour
 		{
 			bouncing.moveSpeed = speed * 4;
 		}
+
+		/*RangedEnemy ranged = enemy.GetComponent<RangedEnemy>();
+
+		if(ranged != null)
+		{
+			ranged.moveSpeed = speed;
+		}*/
 		
 		
 	}
