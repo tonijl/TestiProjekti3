@@ -27,14 +27,14 @@ public class Rocket : MonoBehaviour
 			//Debug.Log("Bullet collided with enemy!");
 			enemy.TakeDamage(damage);
             Explode();
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 
 
 		if(collision.gameObject.CompareTag("Wall"))
 		{
             Explode();
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 
 	
