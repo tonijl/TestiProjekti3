@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,8 +15,17 @@ public class MainMenu : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
 
+    public TMP_Text masterVolumeText;
+    public TMP_Text musicVolumeText;
+    public TMP_Text sfxVolumeText;
+
+    public GameObject firstButton;
+
      void Start()
      {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButton);
+
         float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
         float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
@@ -26,31 +37,39 @@ public class MainMenu : MonoBehaviour
         SetMasterVolume(master);
         SetMusicVolume(music);
         SetSFXVolume(sfx);
+
+        masterVolumeText.text = Mathf.RoundToInt(master * 100) + "%";
+        musicVolumeText.text = Mathf.RoundToInt(music * 100) + "%";
+        sfxVolumeText.text = Mathf.RoundToInt(sfx * 100) + "%";
      }
 
-     /*public void SaveMasterVolume(float volume)
-     {
-        PlayerPrefs.SetFloat("MasterVolume", volume);
-        SetMasterVolume(volume);
-
-     }*/
 
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
-         PlayerPrefs.SetFloat("MasterVolume", volume);
+        PlayerPrefs.SetFloat("MasterVolume", volume);
+
+         masterVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
+
+
+        Debug.Log("master volume: " + volume.ToString());
+
     }
 
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
         PlayerPrefs.SetFloat("MusicVolume", volume);
+
+        musicVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
     }
     
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
          PlayerPrefs.SetFloat("SFXVolume", volume);
+
+         sfxVolumeText.text = Mathf.RoundToInt(volume * 100) + "%";
     }
 
     public void SetFullscreen(bool isFullscreen)
