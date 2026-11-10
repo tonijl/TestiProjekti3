@@ -111,3 +111,4 @@ MonoBehaviour:
   damageableLayer:
     serializedVersion: 2
     m_Bits: 264
+  spriteRenderer: {fileID: 2279227015200683494}

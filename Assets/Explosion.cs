@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class Explosion : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class Explosion : MonoBehaviour
     public float explosionDuration = 0.5f;
 
     public LayerMask damageableLayer;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+
 
     void Start()
     {
@@ -40,6 +46,32 @@ public class Explosion : MonoBehaviour
 
         }
         Destroy(gameObject, explosionDuration);
+        StartCoroutine(FadeOut(explosionDuration));
+    }
+
+    void FixedUpdate()
+    {
+
+    }
+
+   IEnumerator FadeOut(float duration)
+    {
+        float elapsed = 0f;
+        Color color = spriteRenderer.color;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            color.a = Mathf.Lerp(1f, 0f, elapsed / duration);
+            spriteRenderer.color = color;
+             yield return null;
+        }
+
+        color.a = 0f;
+        spriteRenderer.color = color;
+
+
     }
 
 

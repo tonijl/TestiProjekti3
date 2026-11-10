@@ -184,3 +184,4 @@ MonoBehaviour:
   lifetime: 5
   damage: 35
   explosionPrefab: {fileID: 3934625277959514471, guid: 858d33e7bfd485e44bd0397fbe684fd3, type: 3}
+  rocketExplosionSound: {fileID: 8300000, guid: c567ed79d1648fc4fadb8df96138e465, type: 3}

@@ -17,6 +17,11 @@ public class EnemyHealth : MonoBehaviour
 	private bool scoreGiven = false;
 
 	public GameObject healthPackPrefab;
+
+	public AudioSource enemyAudio;
+
+	public AudioClip deathSound;
+	public AudioClip hitSound;
 	
 	
 	
@@ -46,6 +51,9 @@ public class EnemyHealth : MonoBehaviour
 	
 	public void TakeDamage(int damage)
 	{
+
+		AudioManager.Instance.PlaySFX(hitSound, transform.position, 1f, 0.9f, 1.1f);
+
 		currentHealth -= damage;
 		
 		
@@ -104,6 +112,13 @@ public class EnemyHealth : MonoBehaviour
 	
 	void Die()
 	{
+
+
+		//enemyAudio.pitch = Random.Range(0.9f, 1.1f);
+		//AudioSource.PlayClipAtPoint(deathSound, transform.position);
+
+		AudioManager.Instance.PlaySFX(deathSound, transform.position, 1f, 0.9f, 1.1f);
+	
 		
 		EnemyShatterEffect shatter = GetComponent<EnemyShatterEffect>();
 		

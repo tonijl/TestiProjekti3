@@ -12,6 +12,18 @@ public class GunShoot : MonoBehaviour
 
 	public GameObject rocketPrefab;
 
+	/*public AudioSource pistolAudio;
+	public AudioSource shotgunAudio;
+	public AudioSource rocketAudio;*/
+
+	//public AudioSource gunAudio;
+
+	public AudioClip pistolSound;
+	public AudioClip shotgunSound;
+	public AudioClip rocketSound;
+
+	public AudioClip reloadSound;
+
 
 	public float bulletSpeed = 15f;
 	public float firerate = 10f;
@@ -22,6 +34,11 @@ public class GunShoot : MonoBehaviour
 	public Slider ammoBar;
 	
 	private int currentAmmo = 12;
+
+	private int currentPistolAmmo = 12;
+	private int currentShotgunAmmo = 6;
+	private int currentRocketAmmo = 4;
+
 	private float reloadTimer = 0f;
 	private float shootDelay = 10f;
 	private float spreadAngle = 20f;
@@ -172,6 +189,12 @@ public class GunShoot : MonoBehaviour
 
 			reloadTimer--;
 			
+
+			if(reloadTimer == (int)(reloadTime/2))
+			{
+				AudioManager.Instance.PlaySFX(reloadSound, transform.position, 1f, 0.9f, 1.1f);
+			}
+
 			if(reloadTimer == 0)
 			{
 				currentAmmo = maxAmmo;
@@ -197,6 +220,8 @@ public class GunShoot : MonoBehaviour
 	private void ChangeWeapon()
 	{
 
+		reloadTimer = -1;
+
 		if(weaponType < 3){
 			weaponType++;
 		}else{
@@ -206,8 +231,13 @@ public class GunShoot : MonoBehaviour
 			switch(weaponType)
 		{
 			case 1:
+
+				currentRocketAmmo = currentAmmo;
+
+				currentAmmo = currentPistolAmmo;
+
 				//pistol
-				currentAmmo = 0;
+				//currentAmmo = 0;
 				maxAmmo = 12;
 				shootDelay = 10f;
 				firerate = 10f;
@@ -218,8 +248,12 @@ public class GunShoot : MonoBehaviour
 				}
 			break;
 			case 2:
+
+				currentPistolAmmo = currentAmmo;
+				currentAmmo = currentShotgunAmmo;
+
 				//shotgun
-				currentAmmo = 0;
+				//currentAmmo = 0;
 				maxAmmo = 6;
 				shootDelay = 30f;
 				firerate = 30f;
@@ -230,8 +264,12 @@ public class GunShoot : MonoBehaviour
 				}
 			break;
 			case 3:
+
+				currentShotgunAmmo = currentAmmo;
+				currentAmmo = currentRocketAmmo;	
+
 				//rocket launcher
-				currentAmmo = 4;
+				//currentAmmo = 4;
 				maxAmmo = 4;
 				shootDelay = 30f;
 				firerate = 30f;
@@ -251,7 +289,11 @@ public class GunShoot : MonoBehaviour
 			ammoBar.value = currentAmmo;
 		}
 
-		Reload();
+		if(currentAmmo == 0)
+		{
+			Reload();
+		}	
+		//Reload();
 
 
 	}
@@ -264,6 +306,13 @@ public class GunShoot : MonoBehaviour
 		{
 			case 1:
 				//pistol
+
+				
+				//gunAudio.pitch = Random.Range(0.9f, 1.1f);
+				//gunAudio.PlayOneShot(pistolSound);
+
+				AudioManager.Instance.PlaySFX(pistolSound, transform.position, 1f, 0.9f, 1.1f);
+
 
 				GameObject bullet2 = Instantiate(
 					bulletPrefab,
@@ -281,6 +330,12 @@ public class GunShoot : MonoBehaviour
 			break;
 			case 2:
 				//shotgun
+
+
+				//gunAudio.pitch = Random.Range(0.9f, 1.1f);
+				//gunAudio.PlayOneShot(shotgunSound);
+
+				AudioManager.Instance.PlaySFX(shotgunSound, transform.position, 1f, 0.9f, 1.1f);
 
 				Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				Vector2 baseDirection = ((Vector2)mousePosition - (Vector2)firePoint.position).normalized;
@@ -323,7 +378,13 @@ public class GunShoot : MonoBehaviour
 
 			break;
 			case 3:
-				//pistol
+				//rocket
+
+
+				//gunAudio.pitch = Random.Range(0.9f, 1.1f);
+				//gunAudio.PlayOneShot(rocketSound);
+
+				AudioManager.Instance.PlaySFX(rocketSound, transform.position, 1f, 0.9f, 1.1f);
 
 				GameObject bullet3 = Instantiate(
 					rocketPrefab,

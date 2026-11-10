@@ -8,6 +8,10 @@ MonoImporter:
   - firePoint: {instanceID: 0}
   - weaponText: {instanceID: 0}
   - rocketPrefab: {fileID: 3271730324144862645, guid: 0640ba1f8845c2444943bb895312cd9e, type: 3}
+  - gunAudio: {instanceID: 0}
+  - pistolSound: {fileID: 8300000, guid: 10fb684d070f3134b8ef89c3e77358d8, type: 3}
+  - shotgunSound: {fileID: 8300000, guid: a7fb3d583f72bed48b8976ea04779ff5, type: 3}
+  - rocketSound: {fileID: 8300000, guid: 0f8d5596ced93424299b67d1680d6e74, type: 3}
   - ammoBar: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}

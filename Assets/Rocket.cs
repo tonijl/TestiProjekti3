@@ -9,6 +9,8 @@ public class Rocket : MonoBehaviour
     public GameObject explosionPrefab;
     private Rigidbody2D rb;
 
+    public AudioClip rocketExplosionSound;
+
 
     void Start()
     {
@@ -52,6 +54,9 @@ public class Rocket : MonoBehaviour
 
     void Explode()
     {
+
+        AudioManager.Instance.PlaySFX(rocketExplosionSound, transform.position, 1f, 0.9f, 1.1f);
+
         Instantiate(
             explosionPrefab,
             transform.position,

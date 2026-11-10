@@ -23,6 +23,9 @@ public class playerScript : MonoBehaviour
 
 	private Rigidbody2D rb;
 	private Vector2 movement;
+
+	public AudioClip getHitSound;
+	public AudioClip healSound;
 	
 	void Awake()
 	{
@@ -52,6 +55,9 @@ public class playerScript : MonoBehaviour
 			return;
 		}
 		
+
+		
+
 		currentHealth -= damage;
 		Debug.Log("Player health: "+ currentHealth);
 
@@ -75,7 +81,12 @@ public class playerScript : MonoBehaviour
 		
 
 		if(damage>0){
+			AudioManager.Instance.PlaySFX(getHitSound, transform.position, 1f, 0.9f, 1.1f);
 			StartCoroutine(InvincibilityFrames());
+		}
+		else
+		{
+			AudioManager.Instance.PlaySFX(healSound, transform.position, 1f, 0.9f, 1.1f);
 		}
 		
 	}
@@ -139,7 +150,10 @@ public class playerScript : MonoBehaviour
 
         movement = movement.normalized;
 		
-        FixedUpdate();
+       //FixedUpdate();
+
+		rb.linearVelocity = movement * movementSpeed;
+
     }
 	
 	void FixedUpdate()

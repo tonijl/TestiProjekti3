@@ -38,6 +38,8 @@ public class RangedEnemy : MonoBehaviour
 	private bool touchingWall;
 	
 	private bool hasLineOfSight;
+
+	public AudioClip laserSound;
 	
 	void Awake()
 	{
@@ -164,6 +166,9 @@ void FixedUpdate()
 
     void Shoot()
     {
+
+		AudioManager.Instance.PlaySFX(laserSound, transform.position, 1f, 0.9f, 1.1f);
+
         Vector2 direction = (player.position - firePoint.position).normalized;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
