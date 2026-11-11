@@ -7,9 +7,12 @@ public class BouncingEnemy : MonoBehaviour
 	
 	private Rigidbody2D rb;
 	private Vector2 moveDirection;
+
+	[SerializeField] private float rotationSpeed = 180f;
 	
 	void Awake()
 	{
+
 		rb = GetComponent<Rigidbody2D>();
 		
 		//chooses a random starting direction
@@ -20,14 +23,20 @@ public class BouncingEnemy : MonoBehaviour
 		{
 			moveDirection = Vector2.right;
 		}
+
+		
+
 		
 	}
 	
 	void FixedUpdate()
 	{
+
 		rb.linearVelocity = moveDirection * moveSpeed;
+		rb.MoveRotation(rb.rotation + rotationSpeed * Time.fixedDeltaTime);
 	}
 	
+
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		//Reflect the movement direction off the wall

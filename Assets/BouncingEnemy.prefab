@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7822188316331533274}
   - component: {fileID: 753078259133731404}
   - component: {fileID: 3800765389162794938}
+  - component: {fileID: -5018864601384721835}
   m_Layer: 8
   m_Name: BouncingEnemy
   m_TagString: Untagged
@@ -91,8 +92,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.07058822, g: 0.5416436, b: 0.5568628, a: 1}
+  m_Sprite: {fileID: 5918659879943240994, guid: db246ce05ea17984cbc97cbf62de3d25, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,7 +129,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5993834965164334786
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.8
 --- !u!114 &7865838542789056623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 4
+  rotationSpeed: 360
 --- !u!114 &4616106988195097399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +358,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!111 &-5018864601384721835
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072214975118867234}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1001 &7492286309671211348
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class playerScript : MonoBehaviour
 	public float flashInterval = 0.1f;
 	private SpriteRenderer spriteRenderer;
 
+	private Camera mainCamera;
+
 
 	public float movementSpeed = 5f;
 
@@ -26,6 +28,10 @@ public class playerScript : MonoBehaviour
 
 	public AudioClip getHitSound;
 	public AudioClip healSound;
+
+
+
+
 	
 	void Awake()
 	{
@@ -36,6 +42,9 @@ public class playerScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+		mainCamera = Camera.main;
+
         currentHealth = maxHealth;
 		
 		if(healthBar != null)
@@ -127,6 +136,20 @@ public class playerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+		Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+		if(mousePosition.x < transform.position.x)
+		{
+			//Debug.Log("flipX = true");
+			spriteRenderer.flipX = true;
+		}
+		else
+		{
+			//Debug.Log("flipX = false");
+			spriteRenderer.flipX = false;
+		}
+
 
 	//float horizontal = 0f;
 	//float vertical = 0f;

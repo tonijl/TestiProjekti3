@@ -33,9 +33,9 @@ public class EnemySpawner : MonoBehaviour
     public int maximumEnemyLimit = 25;
 	
 	[Header("Spawn Area")]
-	public Vector2 spawnMin = new Vector2(-4f, -4f);
-	public Vector2 spawnMax = new Vector2(4f, 4f);
-	public float safeDistance = 4f;
+	public Vector2 spawnMin = new Vector2(-5f, 5f);
+	public Vector2 spawnMax = new Vector2(5f, 5f);
+	public float safeDistance = 5f;
 	public int maxAttempts = 30;
 	
 	[Header("Enemy Speed")]
@@ -51,6 +51,9 @@ public class EnemySpawner : MonoBehaviour
 
     private float spawnTimer = 0f;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
+
+	public LayerMask wallLayer;
+	public float enemySpawnRadius = 0.5f;
 	
 	
 
@@ -129,7 +132,7 @@ public class EnemySpawner : MonoBehaviour
 			return;
 		}
 
-    // Continue with your existing spawn position code...
+   	 // Continue with your existing spawn position code...
 		Vector2 spawnPosition = Vector2.zero;
 		bool validPosition = false;
 		
@@ -145,13 +148,26 @@ public class EnemySpawner : MonoBehaviour
 				Random.Range(spawnMin.y, spawnMax.y)
 			);
 			
-			if(Vector2.Distance(spawnPosition, player.position) >= safeDistance)
+			bool farEnough = Vector2.Distance(spawnPosition, player.position) >= safeDistance;
+
+			        // Check whether enemy would overlap a wall
+        	bool insideWall = Physics2D.OverlapCircle(spawnPosition,enemySpawnRadius, wallLayer ) != null;
+
+			if (farEnough && !insideWall)
 			{
 				validPosition = true;
 				break;
 			}
-
 		}
+
+
+			/*if(Vector2.Distance(spawnPosition, player.position) >= safeDistance)
+			{
+				validPosition = true;
+				break;
+			}*/
+
+		
 		
 		if(!validPosition)
 		{
@@ -228,6 +244,34 @@ public class EnemySpawner : MonoBehaviour
 		}*/
 		
 		
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		if (player == null)
+		{
+			return;
+		}
+
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(player.position, safeDistance);
+
+		Gizmos.color = Color.green;
+
+		Vector3 center = new Vector3(
+			(spawnMin.x + spawnMax.x) / 2f,
+			(spawnMin.y + spawnMax.y) / 2f,
+			0f
+		);
+
+		Vector3 size = new Vector3(
+			spawnMax.x - spawnMin.x,
+			spawnMax.y - spawnMin.y,
+			0f
+		);
+
+		Gizmos.DrawWireCube(center, size);
+
 	}
 	
 	
