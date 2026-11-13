@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 	[Header("Spawn Area")]
 	public Vector2 spawnMin = new Vector2(-5f, 5f);
 	public Vector2 spawnMax = new Vector2(5f, 5f);
-	public float safeDistance = 5f;
+	public float safeDistance = 4f;
 	public int maxAttempts = 30;
 	
 	[Header("Enemy Speed")]
@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> spawnedEnemies = new List<GameObject>();
 
 	public LayerMask wallLayer;
-	public float enemySpawnRadius = 0.5f;
+	public float enemySpawnRadius = 0.8f;
 	
 	
 
