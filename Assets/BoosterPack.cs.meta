@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 5f6af9d116264494187110a391c42953
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - powerUpSound: {fileID: 8300000, guid: 28e375b7cf0170d4d8bdc4e228a4b51e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

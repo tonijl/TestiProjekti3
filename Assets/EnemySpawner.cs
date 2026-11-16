@@ -184,18 +184,52 @@ public class EnemySpawner : MonoBehaviour
 
 		Debug.Log("randomEnemy: "+randomEnemy.ToString());
 
-		switch(randomEnemy)
+		int bouncyEnemyCounter = 0;
+
+		foreach (BouncingEnemy obj in FindObjectsByType<BouncingEnemy>(FindObjectsSortMode.None))
 		{
-			case 1:
-				selectPrefab = ChasingEnemyPrefab;
-			break;
-			case 2:
-				selectPrefab = BouncingEnemyPrefab;
-			break;
-			case 3:
-				selectPrefab = RangedEnemyPrefab;
-			break;
+			bouncyEnemyCounter++;
 		}
+
+		Debug.Log("bouncyEnemyCounter: "+bouncyEnemyCounter.ToString());
+
+
+		if(bouncyEnemyCounter<3)
+		{
+
+			switch(randomEnemy)
+			{
+				case 1:
+					selectPrefab = ChasingEnemyPrefab;
+				break;
+				case 2:
+					selectPrefab = BouncingEnemyPrefab;
+				break;
+				case 3:
+					selectPrefab = RangedEnemyPrefab;
+				break;
+			}
+
+		}
+		else
+		{
+
+			randomEnemy = Random.Range(1, 3);
+
+			switch(randomEnemy)
+			{
+				case 1:
+					selectPrefab = ChasingEnemyPrefab;
+				break;
+				case 2:
+					selectPrefab = RangedEnemyPrefab;
+				break;
+			}
+		}
+
+
+
+
 
 
 

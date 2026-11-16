@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
 	private bool scoreGiven = false;
 
 	public GameObject healthPackPrefab;
+	public GameObject boosterPackPrefab;
 
 	public AudioSource enemyAudio;
 
@@ -137,14 +138,29 @@ public class EnemyHealth : MonoBehaviour
 			scoreGiven = true;
 
 
-		// 20% changce to drop healthpack
+		// 20% changce to drop powerup
 			if(Random.value <= 0.2f){
 
-					GameObject healthPack = Instantiate(
-						healthPackPrefab,
-						transform.position,
-						Quaternion.identity
-					);
+
+					if(Random.value <= 0.5f){
+
+						GameObject healthPack = Instantiate(
+							healthPackPrefab,
+							transform.position,
+							Quaternion.identity
+						);
+
+					}
+					else
+					{
+						GameObject boosterPack = Instantiate(
+							boosterPackPrefab,
+							transform.position,
+							Quaternion.identity
+						);
+					}
+
+
 			}
 
 

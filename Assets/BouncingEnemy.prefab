@@ -196,6 +196,7 @@ MonoBehaviour:
   healthBarObject: {fileID: 655554909351530025}
   healthBarOffset: {x: 0, y: 0.8, z: 0}
   healthPackPrefab: {fileID: 5214970074149388371, guid: 1d491875d528dd343b1663fc15cfedc5, type: 3}
+  boosterPackPrefab: {fileID: 5610492782052710756, guid: b629f60991cb35e429fed9e0f1b133b0, type: 3}
   enemyAudio: {fileID: 3800765389162794938}
   deathSound: {fileID: 8300000, guid: 975973a5bd92dd646b3ec9c08e49c9cf, type: 3}
   hitSound: {fileID: 8300000, guid: 1266c88071580834f8c5c957d53b99b1, type: 3}

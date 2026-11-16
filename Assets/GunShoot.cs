@@ -24,6 +24,8 @@ public class GunShoot : MonoBehaviour
 
 	public AudioClip reloadSound;
 
+	public AudioClip powerUpSound;
+
 
 	public float bulletSpeed = 15f;
 	public float firerate = 10f;
@@ -42,6 +44,17 @@ public class GunShoot : MonoBehaviour
 	private float reloadTimer = 0f;
 	private float shootDelay = 10f;
 	private float spreadAngle = 20f;
+
+	public int boostDuration = 0;
+	public int boostPower = 1;
+
+	[Header("Power Up UI")]
+	public Slider timerBar;
+
+	[Header("Player Appearance")]
+	public Renderer playerRenderer;
+	private Color originalColor;
+
 	
 	//[Header("Ammo Bar")]
 	
@@ -49,6 +62,16 @@ public class GunShoot : MonoBehaviour
 	
 	void Start()
 	{
+
+		if(playerRenderer != null)
+		{
+			originalColor = playerRenderer.material.color;
+		}
+
+		if(timerBar != null)
+		{
+			timerBar.gameObject.SetActive(false);
+		}
 
 		switch(weaponType)
 		{
@@ -174,7 +197,7 @@ public class GunShoot : MonoBehaviour
 			}
 			
 		}
-			shootDelay--;
+			shootDelay -= 1 * boostPower;
 
 
 
@@ -187,7 +210,7 @@ public class GunShoot : MonoBehaviour
 				ammoBar.value = currentAmmo;
 			}				
 
-			reloadTimer--;
+			reloadTimer -= 1 * boostPower;
 			
 
 			if(reloadTimer == (int)(reloadTime/2))
@@ -195,11 +218,59 @@ public class GunShoot : MonoBehaviour
 				AudioManager.Instance.PlaySFX(reloadSound, transform.position, 1f, 0.9f, 1.1f);
 			}
 
-			if(reloadTimer == 0)
+			if(reloadTimer == 0 || reloadTimer == -1)
 			{
 				currentAmmo = maxAmmo;
+				reloadTimer = -2;
 			}
+
+			
+
+			boostDuration--;
+			if(boostDuration == 0)
+			{
+				boostPower = 1;
+
+				if(playerRenderer != null)
+				{
+					playerRenderer.material.color = originalColor;
+				}
+
+				if(timerBar != null)
+				{
+					timerBar.gameObject.SetActive(false);
+				}
+
+			}
+			else
+			{
+				if(timerBar != null)
+				{
+					timerBar.value = boostDuration;
+				}
+			}
+
 		
+	}
+
+	public void FireRateBoost(int duration, int multiplier)
+	{
+
+			AudioManager.Instance.PlaySFX(powerUpSound, transform.position, 1f, 0.9f, 1.1f);
+
+			boostDuration = duration;
+			boostPower = multiplier;
+
+			if(playerRenderer != null)
+			{
+				playerRenderer.material.color = Color.red;
+			}
+
+				if(timerBar != null)
+				{
+					timerBar.gameObject.SetActive(true);
+					timerBar.maxValue = boostDuration;
+				}
 	}
 	
 	
@@ -207,7 +278,7 @@ public class GunShoot : MonoBehaviour
 	{
 		currentAmmo = 0;
 		reloadTimer = reloadTime;
-		Debug.Log("reloadTimer: "+reloadTimer.ToString());
+		//Debug.Log("reloadTimer: "+reloadTimer.ToString());
 	}
 
 	Vector2 GetMouseDirection()

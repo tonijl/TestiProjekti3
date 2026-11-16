@@ -18,7 +18,7 @@ public class playerScript : MonoBehaviour
 	public float flashInterval = 0.1f;
 	private SpriteRenderer spriteRenderer;
 
-	private Camera mainCamera;
+	public Camera mainCamera;
 
 
 	public float movementSpeed = 5f;
@@ -28,6 +28,13 @@ public class playerScript : MonoBehaviour
 
 	public AudioClip getHitSound;
 	public AudioClip healSound;
+	public AudioClip deathSound;
+
+	public PlayerDash playerDash;
+
+
+
+
 
 
 
@@ -52,23 +59,23 @@ public class playerScript : MonoBehaviour
 			healthBar.maxValue = maxHealth;
 			healthBar.value = currentHealth;
 		}
-		
-		
+
 		spriteRenderer = GetComponent<SpriteRenderer>();
     }
 	
 	public void TakeDamage(int damage)
 	{
-		if(isInvincible)
+		if((isInvincible || playerDash.IsInvulnerable) && damage > 0)
 		{
 			return;
 		}
+		
 		
 
 		
 
 		currentHealth -= damage;
-		Debug.Log("Player health: "+ currentHealth);
+		//Debug.Log("Player health: "+ currentHealth);
 
 		if(currentHealth>maxHealth)
 		{
@@ -128,6 +135,24 @@ public class playerScript : MonoBehaviour
 		
 	private void Die()
 	{
+
+
+
+		/*AudioManager.Instance.PlaySFX(deathSound, transform.position, 1f, 0.9f, 1.1f);
+	
+		
+		EnemyShatterEffect shatter = GetComponent<EnemyShatterEffect>();
+		
+		if(shatter != null)
+		{
+			shatter.Shatter();
+		}
+		else
+		{
+			
+			//Destroy(gameObject);
+		}*/
+
 		FindFirstObjectByType<GameManager>().GameOver();	
 	}
 	
@@ -151,22 +176,7 @@ public class playerScript : MonoBehaviour
 		}
 
 
-	//float horizontal = 0f;
-	//float vertical = 0f;
 
-
-
-	
-	/*if(Input.GetKey(KeyCode.LeftArrow)){ horizontal = -1f;}
-	if(Input.GetKey(KeyCode.RightArrow)){ horizontal = 1f;}
-	if(Input.GetKey(KeyCode.UpArrow)){ vertical = 1f;}
-	if(Input.GetKey(KeyCode.DownArrow)){ vertical = -1f;}
-	
-
-
-	Vector3 movement = new Vector3(horizontal, vertical, 0f).normalized;
-
-	transform.position += movement * movementSpeed * Time.deltaTime;*/
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -175,12 +185,23 @@ public class playerScript : MonoBehaviour
 		
        //FixedUpdate();
 
-		rb.linearVelocity = movement * movementSpeed;
+		if(playerDash.IsDashing())
+		{
+			return;
+		}
+
+
+		//rb.linearVelocity = movement * movementSpeed;
 
     }
 	
 	void FixedUpdate()
 	{
+
+		if(playerDash.IsDashing())
+		{
+			return;
+		}
 		rb.linearVelocity = movement * movementSpeed;
 	}
 	
