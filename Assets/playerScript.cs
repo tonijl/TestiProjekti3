@@ -6,8 +6,8 @@ public class playerScript : MonoBehaviour
 {
 
 	[Header("Health")]
-	public int maxHealth = 3;
-	private int currentHealth;
+	public float maxHealth = 3;
+	private float currentHealth;
 	public Slider healthBar;
 	
 	[Header("Invincibility Frames")]
@@ -31,6 +31,8 @@ public class playerScript : MonoBehaviour
 	public AudioClip deathSound;
 
 	public PlayerDash playerDash;
+
+	[SerializeField] private CameraShake cameraShake;
 
 
 
@@ -63,7 +65,7 @@ public class playerScript : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
     }
 	
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		if((isInvincible || playerDash.IsInvulnerable) && damage > 0)
 		{
@@ -98,6 +100,7 @@ public class playerScript : MonoBehaviour
 
 		if(damage>0){
 			AudioManager.Instance.PlaySFX(getHitSound, transform.position, 1f, 0.9f, 1.1f);
+			cameraShake.Shake(0.2f, 0.15f);
 			StartCoroutine(InvincibilityFrames());
 		}
 		else
@@ -138,7 +141,7 @@ public class playerScript : MonoBehaviour
 
 
 
-		/*AudioManager.Instance.PlaySFX(deathSound, transform.position, 1f, 0.9f, 1.1f);
+		AudioManager.Instance.PlaySFX(deathSound, transform.position, 1f, 0.9f, 1.1f);
 	
 		
 		EnemyShatterEffect shatter = GetComponent<EnemyShatterEffect>();
@@ -146,15 +149,25 @@ public class playerScript : MonoBehaviour
 		if(shatter != null)
 		{
 			shatter.Shatter();
+			//StartCoroutine(deathDelay());
+			
 		}
 		else
 		{
 			
-			//Destroy(gameObject);
-		}*/
+			Destroy(gameObject);
+		}
 
 		FindFirstObjectByType<GameManager>().GameOver();	
 	}
+
+	/*private IEnumerator deathDelay()
+	{
+
+		yield return new WaitForSeconds(2f);
+
+		FindFirstObjectByType<GameManager>().GameOver();	
+	}*/
 	
 	
 

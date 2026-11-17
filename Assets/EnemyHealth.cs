@@ -5,8 +5,8 @@ public class EnemyHealth : MonoBehaviour
 {
 	
 	[Header("Health")]
-	public int maxHealth = 100;
-	private int currentHealth;
+	public float maxHealth = 100;
+	private float currentHealth;
 	private EnemyDamageFlash damageFlash;
 	
 	[Header("Healt Bar")]
@@ -23,6 +23,9 @@ public class EnemyHealth : MonoBehaviour
 
 	public AudioClip deathSound;
 	public AudioClip hitSound;
+
+	public float hitSoundCooldown = 0.2f;
+	private float nextHitSoundTime = 0f;
 	
 	
 	
@@ -50,10 +53,17 @@ public class EnemyHealth : MonoBehaviour
 		
     }
 	
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 
-		AudioManager.Instance.PlaySFX(hitSound, transform.position, 1f, 0.9f, 1.1f);
+
+		if(Time.time >= nextHitSoundTime)
+		{
+
+			AudioManager.Instance.PlaySFX(hitSound, transform.position, 1f, 0.9f, 1.1f);
+			nextHitSoundTime = Time.time + hitSoundCooldown;
+
+		}
 
 		currentHealth -= damage;
 		
@@ -95,7 +105,7 @@ public class EnemyHealth : MonoBehaviour
 		}
 	}
 	
-	public void Heal(int amount)
+	public void Heal(float amount)
 	{
 		currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
 		

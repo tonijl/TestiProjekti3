@@ -4,25 +4,30 @@ public class EnemyCollision : MonoBehaviour
 {
 
 	public int damage = 25;
-
+	private int collisionDelay = 100;
+	private int collisionTimer = 0; 
 	
-	//private void OnCollisionEnter2D(Collision2D other)
-	private void OnCollisionEnter2D(Collision2D collision)
+	void FixedUpdate()
 	{
+		collisionTimer--;
+	}
+	
+	
+	//private void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		if(collisionTimer <= 0){
 		
-		//PlayerHealth player = collision.GetComponent<PlayerHealth>();
-		playerScript player = collision.gameObject.GetComponent<playerScript>();
-		
-		if(player != null)
-		{
-			player.TakeDamage(damage);
+			playerScript player = collision.gameObject.GetComponent<playerScript>();
+			
+			if(player != null)
+			{
+				player.TakeDamage(damage);
+			}
+
+			collisionTimer = collisionDelay;
 		}
 		
-		/*if(collision.gameObject.CompareTag("Player"))
-		{
-			Debug.Log("enemy colliding with player!");
-			FindFirstObjectByType<GameManager>().GameOver();
-		}*/
 		
 	}
 
