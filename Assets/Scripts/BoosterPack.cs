@@ -29,23 +29,32 @@ public class BoosterPack : MonoBehaviour
 		if(other.CompareTag("Player") == true)
 		{
 
-        GunShoot shooting = other.GetComponentInChildren<GunShoot>();
+            // GunShoot shooting = other.GetComponentInChildren<GunShoot>();
 
-        if(shooting != null)
-        {
+            WeaponBase weapon = other.GetComponentInChildren<WeaponBase>();
 
-                
-                //public void FireRateBoost(int duration, int multiplier)
+            if (weapon != null)
+            {
+                weapon.FireRateBoost(boostDuration, boostPower);
+            }
+
+
+            /*
+
+            PistolScript shooting = other.GetComponentInChildren<PistolScript>();
+
+            if (shooting != null)
+            {
                 shooting.FireRateBoost(boostDuration, boostPower);
-
-            //shooting.boostDuration = boostDuration;
-            //shooting.boostPower = boostPower;
-        }
+            }
+            */
 
 
 
-			
-			Destroy(gameObject);
+
+
+
+            Destroy(gameObject);
 
 		}
 		

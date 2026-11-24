@@ -6,6 +6,9 @@ public class WeaponSwitcher : MonoBehaviour
     public GameObject[] weapons;
 
     private int currentWeapon = 0;
+    private int previousWeapon = -1;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +28,16 @@ public class WeaponSwitcher : MonoBehaviour
             SwitchWeapon(1);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SwitchWeapon(2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SwitchWeapon(3);
+        }
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         if(scroll > 0f)
@@ -39,8 +52,16 @@ public class WeaponSwitcher : MonoBehaviour
 
     }
 
-    void SwitchWeapon(int index)
+    /*void SwitchWeapon(int index)
     {
+
+        previousWeapon = currentWeapon;
+
+
+        
+
+
+
         if(index < 0 || index >= weapons.Length)
         {
             return;
@@ -51,7 +72,35 @@ public class WeaponSwitcher : MonoBehaviour
         for (int i = 0; i < weapons.Length; i++)
         {
             weapons[i].SetActive(i == currentWeapon);
+
         }
+    }*/
+
+    void SwitchWeapon(int index)
+    {
+        if(index < 0 || index >= weapons.Length || index == currentWeapon)
+        {
+            return;
+        }
+
+        /*WeaponBase previous = weapons[currentWeapon].GetComponent<WeaponBase>();
+
+        WeaponBase next = weapons[index].GetComponent<WeaponBase>();
+
+        next.boostPower = previous.boostPower;
+        next.boostDuration = previous.boostDuration;
+        next.timerBar = previous.timerBar;*/
+
+        previousWeapon = currentWeapon;
+        currentWeapon = index;
+
+        for(int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].SetActive(i == currentWeapon);
+        }
+
+
+
     }
 
 

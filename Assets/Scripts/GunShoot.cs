@@ -178,8 +178,10 @@ public class GunShoot : MonoBehaviour
 	void FixedUpdate()
 	{
 
+       // ammoBar.maxValue = maxAmmo;
 
-			if(currentAmmo>0 && shootDelay<=0){
+
+        if (currentAmmo>0 && shootDelay<=0){
 		
 			if(Input.GetMouseButton(0))
 			{
@@ -197,6 +199,7 @@ public class GunShoot : MonoBehaviour
 			}
 			
 		}
+			shootDelay -= 1 * boostPower;
 			shootDelay -= 1 * boostPower;
 
 
