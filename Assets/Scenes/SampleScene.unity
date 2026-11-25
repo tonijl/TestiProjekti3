@@ -299,6 +299,10 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1938647820881988133, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP)
+      objectReference: {fileID: 0}
     - target: {fileID: 2031345548251657438, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -450,6 +454,14 @@ PrefabInstance:
     - target: {fileID: 4432059260438624786, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662475909838339741, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    - target: {fileID: 4662475909838339741, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4693354592706633261, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -681,7 +693,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1938647820881988133, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 471002449495248898, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
       insertIndex: -1
@@ -692,6 +705,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 439385201149285496, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 617501729}
+    - targetCorrespondingSourceObject: {fileID: 5128697224980360687, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1106333823}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
 --- !u!224 &31724565 stripped
@@ -1473,6 +1489,7 @@ GameObject:
   - component: {fileID: 232561066}
   - component: {fileID: 232561065}
   - component: {fileID: 232561064}
+  - component: {fileID: 232561067}
   m_Layer: 5
   m_Name: PowerUpTimerCanvas
   m_TagString: Untagged
@@ -1564,6 +1581,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &232561067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232561062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1acf28b6fb93a44aaa84cd746d6217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  firePoint: {fileID: 0}
 --- !u!1 &238402037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 238402038}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: LaserOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2111,7 +2141,7 @@ GameObject:
   - component: {fileID: 526020673}
   - component: {fileID: 526020678}
   - component: {fileID: 526020679}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2335,6 +2365,7 @@ MonoBehaviour:
   firePoint: {fileID: 658103715}
   weaponText: {fileID: 1166552583}
   shotgunSound: {fileID: 8300000, guid: 1f3d4f87c6e12464a98b896fcc36f851, type: 3}
+  muzzleFlashPrefab: {fileID: 3684943417668490145, guid: 336ddef04ce196d4097a0aa261e3a5be, type: 3}
   reloadSound: {fileID: 8300000, guid: f57df86029caee344966d76c77068646, type: 3}
   bulletSpeed: 15
   firerate: 30
@@ -2993,7 +3024,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000i
+  m_ApplyToSortingLayers: 00000000ad431348i
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3065,7 +3096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 658103715}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3370,7 +3401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 702290639}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3525,7 +3556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 752517495}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3561,7 +3592,7 @@ GameObject:
   - component: {fileID: 765442974}
   - component: {fileID: 765442979}
   - component: {fileID: 765442978}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3772,6 +3803,7 @@ MonoBehaviour:
   rocketPrefab: {fileID: 3271730324144862645, guid: 0640ba1f8845c2444943bb895312cd9e, type: 3}
   rocketSound: {fileID: 8300000, guid: 0f8d5596ced93424299b67d1680d6e74, type: 3}
   reloadSound: {fileID: 8300000, guid: f57df86029caee344966d76c77068646, type: 3}
+  muzzleFlashPrefab: {fileID: 3684943417668490145, guid: 336ddef04ce196d4097a0aa261e3a5be, type: 3}
   bulletSpeed: 15
   firerate: 30
   maxAmmo: 4
@@ -4138,6 +4170,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045014278}
   m_CullTransparentMesh: 1
+--- !u!1 &1106333822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106333823}
+  - component: {fileID: 1106333825}
+  - component: {fileID: 1106333824}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1106333823
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106333822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2116151999}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -40, y: 13}
+  m_SizeDelta: {x: 5, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1106333824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106333822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Fullscreen
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656bu
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1106333825
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106333822}
+  m_CullTransparentMesh: 1
 --- !u!1 &1111300267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4442,7 +4611,7 @@ GameObject:
   - component: {fileID: 1135108717}
   - component: {fileID: 1135108719}
   - component: {fileID: 1135108720}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: LaserWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4459,7 +4628,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.1, z: 1.0088}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 238402038}
@@ -4480,10 +4649,10 @@ MonoBehaviour:
   playerBoost: {fileID: 57411859}
   powerUpSound: {fileID: 8300000, guid: 28e375b7cf0170d4d8bdc4e228a4b51e, type: 3}
   weaponText: {fileID: 1166552583}
-  LaserSound: {fileID: 8300000, guid: 9b958216e2f07b04ba8f2f7569cfdabf, type: 3}
+  laserSound: {fileID: 8300000, guid: 9b958216e2f07b04ba8f2f7569cfdabf, type: 3}
   reloadSound: {fileID: 8300000, guid: f57df86029caee344966d76c77068646, type: 3}
-  maxAmmo: 100
-  reloadTime: 100
+  maxAmmo: 150
+  reloadTime: 150
   ammoBar: {fileID: 362618943}
   laserOrigin: {fileID: 238402038}
   laserRange: 30
@@ -4492,6 +4661,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   mainCamera: {fileID: 1464536367}
+  laserSoundCooldown: 0.2
 --- !u!212 &1135108718
 SpriteRenderer:
   serializedVersion: 3
@@ -4539,7 +4709,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.3160377, b: 0.3160377, a: 1}
@@ -5710,7 +5880,7 @@ GameObject:
   - component: {fileID: 1564421892}
   - component: {fileID: 1564421894}
   - component: {fileID: 1564421893}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5919,6 +6089,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6625987664917466761, guid: 4574718519d931342bbd19f09333a758, type: 3}
   firePoint: {fileID: 752517495}
   weaponText: {fileID: 1166552583}
+  muzzleFlashPrefab: {fileID: 3684943417668490145, guid: 336ddef04ce196d4097a0aa261e3a5be, type: 3}
   pistolSound: {fileID: 8300000, guid: 10fb684d070f3134b8ef89c3e77358d8, type: 3}
   reloadSound: {fileID: 8300000, guid: f57df86029caee344966d76c77068646, type: 3}
   bulletSpeed: 15
@@ -6556,6 +6727,11 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!224 &2116151999 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5128697224980360687, guid: 1d69267cfb3e6914f9f7622def09157e, type: 3}
+  m_PrefabInstance: {fileID: 31724564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1409272393781316307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6567,6 +6743,14 @@ PrefabInstance:
     - target: {fileID: 257251634543192938, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
       propertyPath: m_Name
       value: oPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 562203030931012997, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 562203030931012997, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3654603634875663987, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
       propertyPath: m_Interpolate
@@ -6589,8 +6773,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4522623494128395620, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522623494128395620, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522623494128395620, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4635069310930732848, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6632,13 +6824,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5108219362775465456, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6221268228153917760, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8553837254172245585, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8553837254172245585, guid: 37c4b05f2fbe23c49acdf4e551b5cda3, type: 3}
       propertyPath: m_IsActive

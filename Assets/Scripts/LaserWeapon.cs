@@ -9,15 +9,15 @@ public class LaserWeapon : WeaponBase
 
 
     public TMP_Text weaponText;
-    public AudioClip LaserSound;
+    public AudioClip laserSound;
     public AudioClip reloadSound;
     //public AudioClip powerUpSound;
 
     public int maxAmmo = 12;
-    public float reloadTime = 100f;
+    public float reloadTime = 150f;
     public Slider ammoBar;
 
-    private float currentAmmo = 100;
+    private float currentAmmo = 150;
     private float currentLaserAmmo = 100;
 
     private float reloadTimer = 0f;
@@ -35,6 +35,21 @@ public class LaserWeapon : WeaponBase
 
     private LineRenderer lineRenderer;
     private bool isFiring;
+
+   
+    public float laserSoundCooldown = 0.2f;
+    private float nextLaserSoundTime = 0;
+
+
+
+
+    /*    if (Time.time >= nextLaserSoundTime)
+    {
+
+        AudioManager.Instance.PlaySFX(laserSound, transform.position, 1f, 0.9f, 1.1f);
+        nextLaserSoundTime = Time.time + laserSoundCooldown;
+
+    }*/
 
 
     void Start()
@@ -117,7 +132,7 @@ public class LaserWeapon : WeaponBase
             {
                 ShootLaser();
                 //currentAmmo--;
-                currentAmmo -= (10 * Time.deltaTime);
+                currentAmmo -= (10 * playerBoost.boostPower * Time.deltaTime);
 
                 if (currentAmmo<0)
                 {
@@ -179,55 +194,15 @@ public class LaserWeapon : WeaponBase
             reloadTimer = -2;
         }
 
-       /* boostDuration--;
-        if (boostDuration == 0)
-        {
-            boostPower = 1;
-
-            if (playerRenderer != null)
-            {
-                playerRenderer.material.color = originalColor;
-            }
-
-            if (timerBar != null)
-            {
-                timerBar.gameObject.SetActive(false);
-            }
-
-        }
-        else
-        {
-            if (timerBar != null)
-            {
-                timerBar.value = boostDuration;
-            }
-        }*/
     }
 
-   /* public void FireRateBoost(int duration, int multiplier)
-    {
 
-        AudioManager.Instance.PlaySFX(powerUpSound, transform.position, 1f, 0.9f, 1.1f);
-
-        boostDuration = duration;
-        boostPower = multiplier;
-
-        if (playerRenderer != null)
-        {
-            playerRenderer.material.color = Color.red;
-        }
-
-        if (timerBar != null)
-        {
-            timerBar.gameObject.SetActive(true);
-            timerBar.maxValue = boostDuration;
-        }
-    }*/
 
     private void Reload()
     {
         currentAmmo = 0;
         reloadTimer = reloadTime;
+        StopLaser();
     }
 
     Vector2 GetMouseDirection()
@@ -239,6 +214,17 @@ public class LaserWeapon : WeaponBase
 
     void ShootLaser()
     {
+
+
+        if (Time.time >= nextLaserSoundTime)
+        {
+
+            AudioManager.Instance.PlaySFX(laserSound, transform.position, 1f, 0.9f, 1.1f);
+            nextLaserSoundTime = Time.time + laserSoundCooldown;
+
+        }
+
+
         lineRenderer.enabled = true;
 
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);

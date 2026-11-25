@@ -10,6 +10,8 @@ public class PistolScript : WeaponBase
     public Transform firePoint;
     public TMP_Text weaponText;
 
+    public GameObject muzzleFlashPrefab;
+
 
     public AudioClip pistolSound;
 
@@ -184,6 +186,27 @@ public class PistolScript : WeaponBase
 
     void Shoot()
     {
+
+        float randomRotation = Random.Range(-15f, 15f);
+
+        Quaternion flashRotation = firePoint.rotation * Quaternion.Euler(0, 0, randomRotation);
+
+
+        GameObject flash = Instantiate(
+            muzzleFlashPrefab,
+            firePoint.position,
+            flashRotation
+            );
+
+        MuzzleFlashFollow follow = flash.GetComponent<MuzzleFlashFollow>();
+
+        if(follow != null)
+        {
+            follow.firePoint = firePoint;
+        }
+
+
+        Destroy(flash, 0.2f);
 
 
                 AudioManager.Instance.PlaySFX(pistolSound, transform.position, 1f, 0.9f, 1.1f);

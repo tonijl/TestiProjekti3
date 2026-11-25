@@ -13,6 +13,8 @@ public class ShotgunScript : WeaponBase
 
     public AudioClip shotgunSound;
 
+    public GameObject muzzleFlashPrefab;
+
 
     public AudioClip reloadSound;
 
@@ -329,10 +331,31 @@ public class ShotgunScript : WeaponBase
     void Shoot()
     {
 
-                //shotgun
+        //shotgun
+
+        float randomRotation = Random.Range(-15f, 15f);
+
+        Quaternion flashRotation = firePoint.rotation * Quaternion.Euler(0, 0, randomRotation);
 
 
-                AudioManager.Instance.PlaySFX(shotgunSound, transform.position, 1f, 0.9f, 1.1f);
+        GameObject flash = Instantiate(
+            muzzleFlashPrefab,
+            firePoint.position,
+            flashRotation
+            );
+
+        MuzzleFlashFollow follow = flash.GetComponent<MuzzleFlashFollow>();
+
+        if (follow != null)
+        {
+            follow.firePoint = firePoint;
+        }
+
+
+        Destroy(flash, 0.2f);
+
+
+        AudioManager.Instance.PlaySFX(shotgunSound, transform.position, 1f, 0.9f, 1.1f);
 
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 baseDirection = ((Vector2)mousePosition - (Vector2)firePoint.position).normalized;

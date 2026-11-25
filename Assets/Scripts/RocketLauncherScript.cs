@@ -16,7 +16,9 @@ public class RocketLauncherScript : WeaponBase
 
     public AudioClip reloadSound;
 
-   // public AudioClip powerUpSound;
+    public GameObject muzzleFlashPrefab;
+
+    // public AudioClip powerUpSound;
 
 
     public float bulletSpeed = 15f;
@@ -330,10 +332,31 @@ public class RocketLauncherScript : WeaponBase
     void Shoot()
     {
 
-                //rocket
+        //rocket
+
+        float randomRotation = Random.Range(-15f, 15f);
+
+        Quaternion flashRotation = firePoint.rotation * Quaternion.Euler(0, 0, randomRotation);
 
 
-                AudioManager.Instance.PlaySFX(rocketSound, transform.position, 1f, 0.9f, 1.1f);
+        GameObject flash = Instantiate(
+            muzzleFlashPrefab,
+            firePoint.position,
+            flashRotation
+            );
+
+        MuzzleFlashFollow follow = flash.GetComponent<MuzzleFlashFollow>();
+
+        if (follow != null)
+        {
+            follow.firePoint = firePoint;
+        }
+
+
+        Destroy(flash, 0.2f);
+
+
+        AudioManager.Instance.PlaySFX(rocketSound, transform.position, 1f, 0.9f, 1.1f);
 
                 GameObject bullet3 = Instantiate(
                     rocketPrefab,

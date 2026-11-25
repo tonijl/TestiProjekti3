@@ -33,10 +33,10 @@ public class EnemySpawner : MonoBehaviour
     public int maximumEnemyLimit = 25;
 	
 	[Header("Spawn Area")]
-	public Vector2 spawnMin = new Vector2(-5f, 5f);
+	public Vector2 spawnMin = new Vector2(-5f, -5f);
 	public Vector2 spawnMax = new Vector2(5f, 5f);
 	public float safeDistance = 4f;
-	public int maxAttempts = 30;
+	public int maxAttempts = 100;
 	
 	[Header("Enemy Speed")]
 	public float minSpeed = 0.5f;
@@ -54,6 +54,10 @@ public class EnemySpawner : MonoBehaviour
 
 	public LayerMask wallLayer;
 	public float enemySpawnRadius = 0.8f;
+
+
+	
+
 	
 	
 
@@ -147,25 +151,38 @@ public class EnemySpawner : MonoBehaviour
 				Random.Range(spawnMin.x, spawnMax.x),
 				Random.Range(spawnMin.y, spawnMax.y)
 			);
-			
-			bool farEnough = Vector2.Distance(spawnPosition, player.position) >= safeDistance;
+
+
+			//float playerRadius = 0.5f;
+
+			Collider2D playerCollider = player.GetComponent<Collider2D>();
+
+			float playerRadius = playerCollider != null
+				? Mathf.Max(playerCollider.bounds.extents.x,
+							playerCollider.bounds.extents.y)
+				: 0.5f;
+
+
+            float enemyRadius = enemySpawnRadius;
+
+            bool farEnough = Vector2.Distance(spawnPosition, player.position) >= safeDistance + playerRadius + enemyRadius;
 
 			        // Check whether enemy would overlap a wall
         	bool insideWall = Physics2D.OverlapCircle(spawnPosition,enemySpawnRadius, wallLayer ) != null;
 
-			if (farEnough && !insideWall)
+			bool insideEnemy = Physics2D.OverlapCircle(
+				spawnPosition,
+				enemySpawnRadius,
+				LayerMask.GetMask("Enemy")
+				) != null;
+
+			if (farEnough && !insideWall && !insideEnemy)
 			{
 				validPosition = true;
 				break;
 			}
 		}
 
-
-			/*if(Vector2.Distance(spawnPosition, player.position) >= safeDistance)
-			{
-				validPosition = true;
-				break;
-			}*/
 
 		
 		
@@ -227,15 +244,6 @@ public class EnemySpawner : MonoBehaviour
 			}
 		}
 
-
-
-
-
-
-
-		/*GameObject selectPrefab = Random.value < bouncingEnemyChance
-			? BouncingEnemyPrefab
-			: ChasingEnemyPrefab;*/
 			
 			GameObject enemy = Instantiate(
 				selectPrefab,
@@ -270,13 +278,6 @@ public class EnemySpawner : MonoBehaviour
 			bouncing.moveSpeed = speed * 4;
 		}
 
-		/*RangedEnemy ranged = enemy.GetComponent<RangedEnemy>();
-
-		if(ranged != null)
-		{
-			ranged.moveSpeed = speed;
-		}*/
-		
 		
 	}
 
