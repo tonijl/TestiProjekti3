@@ -38,6 +38,11 @@ public class WeaponSwitcher : MonoBehaviour
             SwitchWeapon(3);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SwitchWeapon(4);
+        }
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         if(scroll > 0f)

@@ -23,6 +23,9 @@ public class playerScript : MonoBehaviour
 
 	public float movementSpeed = 5f;
 
+	public float minMovementMultiplier = 0.5f;
+	public float chargeLevel = 1f;
+
 	private Rigidbody2D rb;
 	private Vector2 movement;
 
@@ -215,7 +218,12 @@ public class playerScript : MonoBehaviour
 		{
 			return;
 		}
-		rb.linearVelocity = movement * movementSpeed;
+
+		float normalizedCharge = Mathf.InverseLerp(1f, 4f, chargeLevel);
+
+		float currentSpeed = movementSpeed * Mathf.Lerp(1f, minMovementMultiplier, normalizedCharge);
+
+		rb.linearVelocity = movement * currentSpeed;
 	}
 	
 	
