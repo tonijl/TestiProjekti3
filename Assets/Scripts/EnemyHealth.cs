@@ -1,8 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
+using System.Collections;
+
 
 public class EnemyHealth : MonoBehaviour
 {
+
+	public Light2D hitLight;
+	public float lightIntensity = 2f;
+	public float lightDuration = 0.3f;
+	private Coroutine lightCoroutine;
 	
 	[Header("Health")]
 	public float maxHealth = 100;
@@ -56,11 +64,20 @@ public class EnemyHealth : MonoBehaviour
 	public void TakeDamage(float damage)
 	{
 
+		if(lightCoroutine != null)
+		{
+			StopCoroutine(lightCoroutine);
+		}
+
+		lightCoroutine = StartCoroutine(FlashLight());
+
+
+
 
 		if(Time.time >= nextHitSoundTime)
 		{
 
-			AudioManager.Instance.PlaySFX(hitSound, transform.position, 1f, 0.9f, 1.1f);
+			AudioManager.Instance.PlaySFX(hitSound, this.gameObject, 1f, 0.9f, 1.1f);
 			nextHitSoundTime = Time.time + hitSoundCooldown;
 
 		}
@@ -93,6 +110,34 @@ public class EnemyHealth : MonoBehaviour
 			Die();
 		}
 		
+	}
+
+
+	IEnumerator FlashLight()
+	{
+		hitLight.intensity = lightIntensity;
+		float elapsed = 0f;
+
+		while (elapsed < lightDuration)
+		{
+			elapsed += Time.deltaTime;
+			float t = elapsed / lightDuration;
+
+			hitLight.intensity = Mathf.Lerp(
+				lightIntensity,
+				0f,
+				t
+			);
+
+			yield return null;
+
+		}
+
+		hitLight.intensity = 0f;
+		lightCoroutine = null;
+
+
+
 	}
 	
 	private void LateUpdate()
@@ -128,7 +173,7 @@ public class EnemyHealth : MonoBehaviour
 		//enemyAudio.pitch = Random.Range(0.9f, 1.1f);
 		//AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
-		AudioManager.Instance.PlaySFX(deathSound, transform.position, 1f, 0.9f, 1.1f);
+		AudioManager.Instance.PlaySFX(deathSound, this.gameObject, 1f, 0.9f, 1.1f);
 	
 		
 		EnemyShatterEffect shatter = GetComponent<EnemyShatterEffect>();

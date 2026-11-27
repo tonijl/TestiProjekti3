@@ -167,7 +167,7 @@ public class ShotgunScript : WeaponBase
 
         if (reloadTimer == (int)(reloadTime / 2))
         {
-            AudioManager.Instance.PlaySFX(reloadSound, transform.position, 1f, 0.9f, 1.1f);
+            AudioManager.Instance.PlaySFX(reloadSound, this.gameObject, 1f, 0.9f, 1.1f);
         }
 
         if (reloadTimer == 0 || reloadTimer == -1)
@@ -355,7 +355,7 @@ public class ShotgunScript : WeaponBase
         Destroy(flash, 0.2f);
 
 
-        AudioManager.Instance.PlaySFX(shotgunSound, transform.position, 1f, 0.9f, 1.1f);
+        AudioManager.Instance.PlaySFX(shotgunSound, this.gameObject, 1f, 0.9f, 1.1f);
 
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 baseDirection = ((Vector2)mousePosition - (Vector2)firePoint.position).normalized;

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.Rendering.Universal;
+
 public class EnemyShatterEffect : MonoBehaviour
 {
     [Header("Shatter Settings")]
@@ -48,6 +50,30 @@ public class EnemyShatterEffect : MonoBehaviour
 
         // Create a separate object for the fragments.
         GameObject fragmentParent = new GameObject("ShatteredFragments");
+
+
+        GameObject lightObject = new GameObject("ShatterLight");
+
+        lightObject.transform.position = source.transform.position;
+
+        Light2D shatterLight = lightObject.AddComponent<Light2D>();
+
+
+        shatterLight.lightType = Light2D.LightType.Point;
+        shatterLight.intensity = 2.5f;
+        shatterLight.pointLightOuterRadius = 3f;
+        shatterLight.pointLightInnerRadius = 0.5f;
+        shatterLight.color = new Color(1f, 0.35f, 0.1f);
+
+       ShatterLightFade fade = lightObject.AddComponent<ShatterLightFade>();
+        fade.duration = fragmentLifetime;
+        fade.startIntensity = 2.5f;
+
+
+
+
+
+
         fragmentParent.transform.position = source.transform.position;
         fragmentParent.transform.rotation = source.transform.rotation;
         fragmentParent.transform.localScale = source.transform.lossyScale;

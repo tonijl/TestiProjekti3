@@ -9,6 +9,8 @@ public class BouncingEnemy : MonoBehaviour
 	private Vector2 moveDirection;
 
 	[SerializeField] private float rotationSpeed = 180f;
+
+	public static int bouncyEnemyAmount = 0;
 	
 	void Awake()
 	{
@@ -23,9 +25,6 @@ public class BouncingEnemy : MonoBehaviour
 		{
 			moveDirection = Vector2.right;
 		}
-
-		
-
 		
 	}
 	
@@ -52,5 +51,15 @@ public class BouncingEnemy : MonoBehaviour
 		}
 		
 	}
-	
+
+    private void OnEnable()
+    {
+        bouncyEnemyAmount++;
+    }
+
+    private void OnDisable()
+    {
+        bouncyEnemyAmount--;
+    }
+
 }

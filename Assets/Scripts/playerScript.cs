@@ -20,6 +20,8 @@ public class playerScript : MonoBehaviour
 
 	public Camera mainCamera;
 
+	public GameObject minigunObject;
+
 
 	public float movementSpeed = 5f;
 
@@ -102,13 +104,13 @@ public class playerScript : MonoBehaviour
 		
 
 		if(damage>0){
-			AudioManager.Instance.PlaySFX(getHitSound, transform.position, 1f, 0.9f, 1.1f);
+			AudioManager.Instance.PlaySFX(getHitSound, this.gameObject, 1f, 0.9f, 1.1f);
 			cameraShake.Shake(0.2f, 0.15f);
 			StartCoroutine(InvincibilityFrames());
 		}
 		else
 		{
-			AudioManager.Instance.PlaySFX(healSound, transform.position, 1f, 0.9f, 1.1f);
+			AudioManager.Instance.PlaySFX(healSound, this.gameObject, 1f, 0.9f, 1.1f);
 		}
 		
 	}
@@ -144,7 +146,7 @@ public class playerScript : MonoBehaviour
 
 
 
-		AudioManager.Instance.PlaySFX(deathSound, transform.position, 1f, 0.9f, 1.1f);
+		AudioManager.Instance.PlaySFX(deathSound, this.gameObject, 1f, 0.9f, 1.1f);
 	
 		
 		EnemyShatterEffect shatter = GetComponent<EnemyShatterEffect>();
@@ -207,6 +209,8 @@ public class playerScript : MonoBehaviour
 		}
 
 
+
+
 		//rb.linearVelocity = movement * movementSpeed;
 
     }
@@ -214,7 +218,17 @@ public class playerScript : MonoBehaviour
 	void FixedUpdate()
 	{
 
-		if(playerDash.IsDashing())
+
+        //if (otherObject.activeInHierarchy)
+        if (minigunObject.activeInHierarchy == false)
+        {
+            chargeLevel = 1f;
+            Debug.Log("Object is active in the scene!");
+        }
+
+
+
+        if (playerDash.IsDashing())
 		{
 			return;
 		}

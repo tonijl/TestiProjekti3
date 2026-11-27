@@ -37,7 +37,7 @@ public class WeaponBase : MonoBehaviour
 
         Debug.Log("FireRateBoostissa...");
 
-        AudioManager.Instance.PlaySFX(powerUpSound, transform.position, 1f, 0.9f, 1.1f);
+        AudioManager.Instance.PlaySFX(powerUpSound, this.gameObject, 1f, 0.9f, 1.1f);
 
         playerBoost.FireRateBoost(duration, multiplier);
 

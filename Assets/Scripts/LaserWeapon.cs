@@ -183,7 +183,7 @@ public class LaserWeapon : WeaponBase
 
         if (reloadTimer == (int)(reloadTime / 2))
         {
-            AudioManager.Instance.PlaySFX(reloadSound, transform.position, 1f, 0.9f, 1.1f);
+            AudioManager.Instance.PlaySFX(reloadSound, this.gameObject, 1f, 0.9f, 1.1f);
         }
 
         if (reloadTimer == 0 || reloadTimer == -1)
@@ -219,7 +219,7 @@ public class LaserWeapon : WeaponBase
         if (Time.time >= nextLaserSoundTime)
         {
 
-            AudioManager.Instance.PlaySFX(laserSound, transform.position, 1f, 0.9f, 1.1f);
+            AudioManager.Instance.PlaySFX(laserSound, this.gameObject, 1f, 0.9f, 1.1f);
             nextLaserSoundTime = Time.time + laserSoundCooldown;
 
         }

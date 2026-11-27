@@ -167,7 +167,7 @@ void FixedUpdate()
     void Shoot()
     {
 
-		AudioManager.Instance.PlaySFX(laserSound, transform.position, 1f, 0.9f, 1.1f);
+		AudioManager.Instance.PlaySFX(laserSound, this.gameObject, 1f, 0.9f, 1.1f);
 
         Vector2 direction = (player.position - firePoint.position).normalized;
 

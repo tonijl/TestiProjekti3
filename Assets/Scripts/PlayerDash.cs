@@ -52,7 +52,7 @@ public class PlayerDash : MonoBehaviour
     IEnumerator Dash()
     {
 
-        AudioManager.Instance.PlaySFX(dashSound, transform.position, 1f, 0.9f, 1.1f);
+        AudioManager.Instance.PlaySFX(dashSound, this.gameObject, 1f, 0.9f, 1.1f);
 
         canDash = false;
         isDashing = true;

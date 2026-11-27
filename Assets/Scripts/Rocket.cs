@@ -55,7 +55,7 @@ public class Rocket : MonoBehaviour
     void Explode()
     {
 
-        AudioManager.Instance.PlaySFX(rocketExplosionSound, transform.position, 1f, 0.9f, 1.1f);
+        AudioManager.Instance.PlaySFX(rocketExplosionSound, this.gameObject, 1f, 0.9f, 1.1f);
 
         Instantiate(
             explosionPrefab,

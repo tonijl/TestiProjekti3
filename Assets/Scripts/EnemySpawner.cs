@@ -201,12 +201,12 @@ public class EnemySpawner : MonoBehaviour
 
 		Debug.Log("randomEnemy: "+randomEnemy.ToString());
 
-		int bouncyEnemyCounter = 0;
+		int bouncyEnemyCounter = BouncingEnemy.bouncyEnemyAmount;
 
-		foreach (BouncingEnemy obj in FindObjectsByType<BouncingEnemy>(FindObjectsSortMode.None))
-		{
-			bouncyEnemyCounter++;
-		}
+		//foreach (BouncingEnemy obj in FindObjectsByType<BouncingEnemy>(FindObjectsSortMode.None))
+		//{
+		//	bouncyEnemyCounter++;
+		//}
 
 		Debug.Log("bouncyEnemyCounter: "+bouncyEnemyCounter.ToString());
 
